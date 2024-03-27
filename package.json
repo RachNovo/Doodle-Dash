@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/RachNovo/Doodle-Dash/issues"
   },
-  "homepage": "https://github.com/RachNovo/Doodle-Dash#readme"
+  "homepage": "https://github.com/RachNovo/Doodle-Dash#readme",
+  "dependencies": {
+    "config": "^3.3.11"
+  }
 }
