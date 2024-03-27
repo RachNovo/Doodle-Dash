@@ -2,13 +2,15 @@
   "name": "doodle-dash",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RachNovo/Doodle-Dash.git"
+    "url": "https://github.com/RachNovo/Doodle-Dash.git"
   },
   "author": "RachNovo",
   "license": "ISC",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/RachNovo/Doodle-Dash#readme",
   "dependencies": {
-    "config": "^3.3.11"
+    "config": "^3.3.11",
+    "express": "^4.19.2"
   }
 }
