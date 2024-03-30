@@ -1,6 +1,6 @@
 import config from 'config';
 import axios from 'axios';
-import logger from './logger.js';
+import logger from './logger/index.js';
 import sanitize from './util/sanitize.js';
 
 const ACCESS_TOKEN = config.get('ACCESS_TOKEN');
@@ -20,7 +20,6 @@ const fetchData = async () => {
             logger.info(`calls every 2 seconds, ${percentageOfCallsUsed}% of total calls used`);
         }
     } catch (error) {
-        //cases: over limit, malformed token, expired token, token missing
         let message;
         const headers = error.response.headers;
         const authenticationError = headers['www-authenticate'];
