@@ -1,4 +1,5 @@
 import { expect, use } from 'chai';
+import axios from 'axios';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import fetchData from '../app.js';
@@ -19,29 +20,43 @@ Tests:
   -edge cases?
 */
 
-describe('API Tests', () => {
-  const sandbox = sinon.createSandbox();
+const mockAPICall = {
+  data: {
+    id: '10163673108419768',
+    name: 'Rachel Novoselac',
+    last_name: 'Novoselac'
+  },
+  headers: { 'x-app-usage': '{"call_count":14}' }
+}
+
+describe('FetchData', () => {
+  let sandbox,axiosStub,setTimeoutSpy;
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    axiosStub = sandbox.stub(axios, "get").returns(mockAPICall);
+    setTimeoutSpy = sinon.spy(global, 'setTimeout');
+  })
   afterEach(() => {
     sinon.restore();
     sandbox.restore();
+    setTimeoutSpy.restore();
   });
   describe('calling the API', () => {
-    const fbAPIMock = sinon.fake.resolves({ data: 'sampleData' });
-    // var clock = sinon.useFakeTimers({ toFake: ["setTimeout"] });
-    // const timeoutSpy = sandbox.spy(setTimeout);
-    it ('should call the API', () => {
+    it('should call the API', () => {
       fetchData();
-      expect(fbAPIMock.calledOnce).to.be.true;
+      expect(axiosStub.called).to.be.true;
     });
-    it.only('should call every 2 seconds while UNDER 80% of rate limit', () => {
-      fetchData();
-      expect(setTimeout).should.have.been.calledWith(2000);
+    it('should call every 2 seconds while UNDER 80% of rate limit', async () => {
+      await fetchData();
+      expect(setTimeoutSpy.calledWith(fetchData, 2000)).to.be.true;
     });
-    it ('should call every 100 seconds while OVER 80% rate limit', () => {
-      expect(true).to.be.false;
+    it('should call every 100 seconds while OVER 80% rate limit', async () => {
+      mockAPICall.headers['x-app-usage'] = '{"call_count":85}';
+      await fetchData();
+      expect(setTimeoutSpy.calledWith(fetchData, 100000)).to.be.true;
     });
   });
-  describe('fetchData should handle API errors', () => {
+  describe('handling API errors', () => {
     it('unspecified error', () => {
       expect(true).to.be.false;
     });
