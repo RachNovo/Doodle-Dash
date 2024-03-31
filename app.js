@@ -26,7 +26,7 @@ const fetchData = async () => {
         if(authenticationError) {
             if (headers['x-app-usage']) {
                 const percentageOfCallsUsed = JSON.parse(headers['x-app-usage']).call_count;
-                message = `${authenticationError}, using ${percentageOfCallsUsed}% of total calls`;
+                message = `${authenticationError}, ${percentageOfCallsUsed}% of total calls used`;
             } else {
                 message = authenticationError;
             }
@@ -39,3 +39,5 @@ const fetchData = async () => {
     }
 }
 fetchData();
+
+export default fetchData;
