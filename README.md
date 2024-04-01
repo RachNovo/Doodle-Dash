@@ -8,7 +8,7 @@
 
 ## Overview
 
-This is an interview take home assignment comprised of a production quality Node.js application that integrates with Meta's API to get basic user information.
+This is an interview take home assignment; a production quality Node.js application that integrates with Meta's API to get basic user information.
 
 ## Author
 
