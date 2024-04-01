@@ -8,7 +8,7 @@
 
 ## Overview
 
-Hello! This is an interview take home assignment completed by [RachNovo](https://github.com/RachNovo). I have built a production quality Node.js application that integrates with Meta's API to get basic user information.
+This is an interview take home assignment completed by [RachNovo](https://github.com/RachNovo). I have built a production quality Node.js application that integrates with Meta's API to get basic user information.
 
 ## Requirements
 - [x] Request data every 2 seconds
