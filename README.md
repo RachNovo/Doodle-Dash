@@ -22,7 +22,7 @@ Hello! This is an interview take home assignment completed by [RachNovo](https:/
 
 *Prerequisites:* Git, Node.js, npm, basic [Facebook app](https://developers.facebook.com/docs/development) for a sandbox API token
 
-### Installing and Set-up
+#### Installing and Set-up
 
 1. Navigate to the local directory where you want to host the application.
 
@@ -51,7 +51,7 @@ $ npm install
 $ npm start
 ```
 
-### Running the Tests
+#### Running the Tests
 Run the test suite using the following command:
 ```bash
 $ npm test
