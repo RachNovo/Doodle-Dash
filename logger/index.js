@@ -2,7 +2,7 @@ import winston from 'winston';
 import { consoleFormat } from 'winston-console-format';
 const { combine, errors, timestamp, ms, splat, json, colorize, padLevels, prettyPrint } = winston.format;
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
     level: 'debug',
     format: combine(
         errors({stack: true}),
@@ -13,7 +13,7 @@ const logger = winston.createLogger({
         prettyPrint()
     ),
     transports: [
-        new winston.transports.File({filename: 'app.log'})
+        new winston.transports.File({filename: 'logger/app.log'})
     ]
 });
 
@@ -36,5 +36,3 @@ if (process.env.NODE_ENV !== 'production') {
         )
     }));
 };
-
-export default logger;

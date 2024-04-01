@@ -1,21 +1,17 @@
 {
   "name": "doodle-dash",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Production quality Node.js application that integrates with Meta's API to get basic user information",
+  "author": "RachNovo",
+  "license": "ISC",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "test": "mocha './tests/*'"
+    "start": "node index.js",
+    "test": "mocha './tests/*.test.js'"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/RachNovo/Doodle-Dash.git"
-  },
-  "author": "RachNovo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RachNovo/Doodle-Dash/issues"
   },
   "homepage": "https://github.com/RachNovo/Doodle-Dash#readme",
   "dependencies": {
