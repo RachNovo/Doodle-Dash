@@ -51,6 +51,8 @@ $ npm install
 $ npm start
 ```
 
+![Screenshot 2024-04-01 at 12 57 30 PM](https://github.com/RachNovo/Doodle-Dash/assets/44451197/876186a0-530b-46aa-ac35-2019fc2eeef9)
+
 #### Running the Tests
 Run the test suite using the following command:
 ```bash
