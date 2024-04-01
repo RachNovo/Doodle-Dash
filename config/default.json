@@ -1,5 +1,5 @@
 {
-    "NODE_ENV": "NODE_ENV",
-     "ACCESS_TOKEN": "ACCESS_TOKEN",
-     "ACCOUNT_ID": "ACCOUNT_ID"
+    "NODE_ENV": "default",
+    "ACCESS_TOKEN": "ACCESS_TOKEN",
+    "ACCOUNT_ID": "ACCOUNT_ID"
 }
