@@ -10,17 +10,22 @@ const params = new URLSearchParams({
 });
 const url = `https://graph.facebook.com/v19.0/me?${params.toString()}`;
 
+const HIGH_PERCENTAGE_WARNING = 80;
+const INITIAL_FREQUENCY = 2000;
+const HIGH_PERCENTAGE_FREQUENCY = 100000;
+const ERROR_RETRY_FREQUENCY = 5000;
+
 export const fetchData = async () => {
     let response;
     try {
         response = await axios.get(url);
         logger.info('received data from FB API', {data: response.data});
         const percentageOfCallsUsed = JSON.parse(response.headers['x-app-usage']).call_count;
-        if (percentageOfCallsUsed > 80) {
-            setTimeout(fetchData, 100000);
+        if (percentageOfCallsUsed > HIGH_PERCENTAGE_WARNING) {
+            setTimeout(fetchData, HIGH_PERCENTAGE_FREQUENCY);
             logger.warn(`${percentageOfCallsUsed}% of calls used! Calls reduced to every: 100 seconds`);
         } else {
-            setTimeout(fetchData, 2000);
+            setTimeout(fetchData, INITIAL_FREQUENCY);
             logger.info(`calls every 2 seconds, ${percentageOfCallsUsed}% of total calls used`);
         }
     } catch (error) {
@@ -39,6 +44,6 @@ export const fetchData = async () => {
         }
 
         logger.error(sanitize(message));
-        setTimeout(fetchData, 5000);
+        setTimeout(fetchData, ERROR_RETRY_FREQUENCY);
     };
 };
