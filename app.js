@@ -1,16 +1,20 @@
 import config from 'config';
 import axios from 'axios';
-import logger from './logger/index.js';
-import sanitize from './util/sanitize.js';
+import { logger } from './logger/index.js';
+import { sanitize } from './util/sanitize.js';
 
 const ACCESS_TOKEN = config.get('ACCESS_TOKEN');
-const url = 'https://graph.facebook.com/v19.0/me?fields=id%2Cname%2Clast_name&access_token=' + ACCESS_TOKEN;
+const params = new URLSearchParams({
+    fields: 'id,name,last_name',
+    access_token: ACCESS_TOKEN
+});
+const url = `https://graph.facebook.com/v19.0/me?${params.toString()}`;
 
-const fetchData = async () => {
+export const fetchData = async () => {
     let response;
     try {
         response = await axios.get(url);
-        logger.info(`received data from FB API`, {data: response.data});
+        logger.info('received data from FB API', {data: response.data});
         const percentageOfCallsUsed = JSON.parse(response.headers['x-app-usage']).call_count;
         if (percentageOfCallsUsed > 80) {
             setTimeout(fetchData, 100000);
@@ -34,10 +38,7 @@ const fetchData = async () => {
             message = error;
         }
 
-        logger.error(`${ sanitize(message) }`);
+        logger.error(sanitize(message));
         setTimeout(fetchData, 5000);
-    }
-}
-fetchData();
-
-export default fetchData;
+    };
+};
