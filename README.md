@@ -20,7 +20,7 @@ Hello! This is an interview take home assignment completed by [RachNovo](https:/
 ## Getting Started
 > Follow these steps to install and run this application on your local machine.
 
-*Prerequisites:* Git, Node.js, npm, basic [Facebook app](https://developers.facebook.com/docs/development) for a sandbox API token
+*Prerequisites:* Git, Node.js(^12.0.0), npm, basic [Facebook app](https://developers.facebook.com/docs/development) for a sandbox API token
 
 #### Installing and Set-up
 
