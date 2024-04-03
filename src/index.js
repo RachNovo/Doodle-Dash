@@ -1,18 +1,19 @@
-import { fetchData } from './src/app.js';
-import config from 'config';
-
-const verifyConfigValues = () => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var app_js_1 = require("./app.js");
+var config_1 = require("config");
+var verifyConfigValues = function () {
     console.log('Checking for ACCESS_TOKEN and ACCOUNT_ID...');
-    const isAccessTokenSet = config.get('ACCESS_TOKEN') !== 'ACCESS_TOKEN';
-    const isAccountIdSet = config.get('ACCOUNT_ID') !== 'ACCOUNT_ID';
+    var isAccessTokenSet = config_1.default.get('ACCESS_TOKEN') !== 'ACCESS_TOKEN';
+    var isAccountIdSet = config_1.default.get('ACCOUNT_ID') !== 'ACCOUNT_ID';
     if (isAccessTokenSet && isAccountIdSet) {
         console.log('Looks like you have configured an ACCESS_TOKEN and ACCOUNT_ID :)');
         return true;
-    } else {
+    }
+    else {
         console.log('Please retrieve your ACCESS_TOKEN and ACCOUNT_ID from FaceBook\'s Graph API Tool and add them to a config file');
         return false;
     }
-
-}
-
-if (verifyConfigValues()) fetchData();
+};
+if (verifyConfigValues())
+    (0, app_js_1.fetchData)();

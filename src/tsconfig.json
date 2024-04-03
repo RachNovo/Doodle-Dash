@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "lib": [ "es2015" ],
+        "skipLibCheck": true
+    },
+    "files": [
+        "logger/index.ts",
+        "util/sanitize.ts",
+        "app.ts",
+        "index.ts"
+    ],
+    "exclude": ["node_modules"],
+    "strict": true
+}
