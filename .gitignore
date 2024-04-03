@@ -1,2 +1,3 @@
 config/local.json
 logger/app.log
+node_modules/
