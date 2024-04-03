@@ -1,7 +1,7 @@
-import { fetchData } from '../app.js';
+import { fetchData } from '../src/app.js';
 import { mockAPICall, mockAPIErrors } from './mockResponses.js';
-import { logger } from '../logger/index.js';
-import { sanitize } from '../util/sanitize.js';
+import { logger } from '../src/logger/index.js';
+import { sanitize } from '../src/util/sanitize.js';
 import config from 'config';
 import axios from 'axios';
 import { expect, use } from 'chai';
