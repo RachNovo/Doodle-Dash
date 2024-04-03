@@ -22,6 +22,7 @@
     "winston-console-format": "^1.0.8"
   },
   "devDependencies": {
+    "@types/node": "^20.12.3",
     "chai": "^5.1.0",
     "mocha": "^10.4.0",
     "sinon": "^17.0.1",
