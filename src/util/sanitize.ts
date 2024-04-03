@@ -1,6 +1,6 @@
 import config from 'config';
 
-export const sanitize = (info) => {
+export const sanitize = (info: object | string):  object | string => {
     const infoString = JSON.stringify(info);
     const token = config.get('ACCESS_TOKEN');
     if(token && infoString.includes(token)) {

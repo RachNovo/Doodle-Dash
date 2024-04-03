@@ -1,4 +1,4 @@
-import winston from 'winston';
+import * as winston from 'winston';
 import { consoleFormat } from 'winston-console-format';
 const { combine, errors, timestamp, ms, splat, json, colorize, padLevels, prettyPrint } = winston.format;
 
