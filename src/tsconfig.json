@@ -4,5 +4,7 @@
         "skipLibCheck": true
     },
     "strict": true,
-    "types": ["node"]
+    "types": ["node"],
+    "noImplicitAny": true,
+    "strictNullCheks": true
 }
