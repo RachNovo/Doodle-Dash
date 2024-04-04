@@ -13,7 +13,7 @@ export const logger = winston.createLogger({
         prettyPrint()
     ),
     transports: [
-        new winston.transports.File({filename: 'logger/app.log'})
+        new winston.transports.File({filename: 'src/logger/app.log'})
     ]
 });
 
