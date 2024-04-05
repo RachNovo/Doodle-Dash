@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.mockAPIErrors = exports.mockAPICall = void 0;
+exports.mockAPICall = {
+    data: {
+        id: '123456',
+        name: 'Name',
+        last_name: 'Last_Name'
+    },
+    headers: { 'x-app-usage': '{"call_count":0}' }
+};
+exports.mockAPIErrors = {
+    'expired access token': 'OAuth "Facebook Platform" "invalid_token" "Error validating access token: Session has expired on Saturday, 30-Mar-24 16:00:00 PDT. The current time is Sunday, 31-Mar-24 14:58:07 PDT."',
+    'invalid access token': 'OAuth "Facebook Platform" "invalid_token" "Malformed access token ACCESS_TOKEN"',
+    'missing access token': 'OAuth "Facebook Platform" "invalid_request" "An active access token must be used to query information about the current user."',
+    'rate limit exceeded': 'OAuth "Facebook Platform" "invalid_request" "(#4) Application request limit reached"'
+};

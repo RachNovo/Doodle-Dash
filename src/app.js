@@ -51,7 +51,7 @@ var INITIAL_FREQUENCY = 2000;
 var HIGH_PERCENTAGE_FREQUENCY = 100000;
 var ERROR_RETRY_FREQUENCY = 5000;
 var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var response, percentageOfCallsUsed, error_1, message, headers, authenticationError, percentageOfCallsUsed;
+    var response, percentageOfCallsUsed, error_1, message, axiosError, headers, authenticationError, percentageOfCallsUsed;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -73,15 +73,18 @@ var fetchData = function () { return __awaiter(void 0, void 0, void 0, function 
             case 2:
                 error_1 = _a.sent();
                 message = void 0;
-                headers = error_1.response.headers;
-                authenticationError = headers['www-authenticate'];
-                if (authenticationError) {
-                    if (headers['x-app-usage']) {
-                        percentageOfCallsUsed = JSON.parse(headers['x-app-usage']).call_count;
-                        message = "".concat(authenticationError, ", ").concat(percentageOfCallsUsed, "% of total calls used");
-                    }
-                    else {
-                        message = authenticationError;
+                axiosError = error_1;
+                if (axiosError && axiosError.response) {
+                    headers = axiosError.response.headers;
+                    authenticationError = headers['www-authenticate'];
+                    if (authenticationError) {
+                        if (headers['x-app-usage']) {
+                            percentageOfCallsUsed = JSON.parse(headers['x-app-usage']).call_count;
+                            message = "".concat(authenticationError, ", ").concat(percentageOfCallsUsed, "% of total calls used");
+                        }
+                        else {
+                            message = authenticationError;
+                        }
                     }
                 }
                 else {

@@ -1,5 +1,5 @@
 import fetchData from '../src/app.js';
-import { mockAPICall, mockAPIErrors } from './mockResponses.ts';
+import { mockAPICall, mockAPIErrors } from './mockResponses.js';
 import logger from '../src/logger/index.js';
 import sanitize from '../src/util/sanitize.js';
 import config from 'config';

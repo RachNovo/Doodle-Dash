@@ -47,10 +47,22 @@ var sinon_1 = require("sinon");
 var sinon_chai_1 = require("sinon-chai");
 (0, chai_1.use)(sinon_chai_1.default);
 describe('FetchData', function () {
-    var sandbox, axiosStub, setTimeoutStub, infoLoggerStub, warnLoggerStub, errorLoggerStub, configStub;
+    var sandbox;
+    axios_1.default.get;
+    global.setTimeout;
+    index_js_1.default.info;
+    index_js_1.default.warn;
+    index_js_1.default.error;
+    config_1.default.get;
+    var axiosStub;
+    var setTimeoutStub;
+    var infoLoggerStub;
+    var warnLoggerStub;
+    var errorLoggerStub;
+    var configStub;
     beforeEach(function () {
         sandbox = sinon_1.default.createSandbox();
-        axiosStub = sandbox.stub(axios_1.default, "get").returns(mockResponses_js_1.mockAPICall);
+        axiosStub = sandbox.stub(axios_1.default, "get").returns(Promise.resolve(mockResponses_js_1.mockAPICall));
         setTimeoutStub = sandbox.stub(global, 'setTimeout');
         infoLoggerStub = sandbox.stub(index_js_1.default, 'info');
         warnLoggerStub = sandbox.stub(index_js_1.default, 'warn');

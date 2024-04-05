@@ -8,6 +8,11 @@
         "moduleResolution": "NodeNext",
         "module": "NodeNext"
     },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "commonjs"
+        }
+    },
     "strict": true,
     "types": ["node"],
     "noImplicitAny": true,
