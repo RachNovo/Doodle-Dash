@@ -1,4 +1,4 @@
-import { fetchData } from './app.js';
+import fetchData from './app.ts';
 import config from 'config';
 
 const verifyConfigValues = () => {

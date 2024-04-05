@@ -1,9 +1,9 @@
 import config from 'config';
-import axios from 'axios';
-import { logger } from './logger/index.js';
-import { sanitize } from './util/sanitize.js';
+import axios, { AxiosError } from 'axios';
+import logger from './logger/index.js';
+import sanitize from './util/sanitize.js';
 
-const ACCESS_TOKEN = config.get('ACCESS_TOKEN');
+const ACCESS_TOKEN: string = config.get('ACCESS_TOKEN');
 const params = new URLSearchParams({
     fields: 'id,name,last_name',
     access_token: ACCESS_TOKEN
@@ -15,7 +15,7 @@ const INITIAL_FREQUENCY = 2000;
 const HIGH_PERCENTAGE_FREQUENCY = 100000;
 const ERROR_RETRY_FREQUENCY = 5000;
 
-export const fetchData = async () => {
+const fetchData: () => Promise<void> = async () => {
     let response;
     try {
         response = await axios.get(url);
@@ -28,16 +28,19 @@ export const fetchData = async () => {
             setTimeout(fetchData, INITIAL_FREQUENCY);
             logger.info(`calls every 2 seconds, ${percentageOfCallsUsed}% of total calls used`);
         }
-    } catch (error) {
+    } catch (error: unknown) {
         let message;
-        const headers = error.response.headers;
-        const authenticationError = headers['www-authenticate'];
-        if(authenticationError) {
-            if (headers['x-app-usage']) {
-                const percentageOfCallsUsed = JSON.parse(headers['x-app-usage']).call_count;
-                message = `${authenticationError}, ${percentageOfCallsUsed}% of total calls used`;
-            } else {
-                message = authenticationError;
+        const axiosError = error as AxiosError;
+        if (axiosError && axiosError.response) {
+            const headers = axiosError.response.headers;
+            const authenticationError = headers['www-authenticate'];
+            if(authenticationError) {
+                if (headers['x-app-usage']) {
+                    const percentageOfCallsUsed = JSON.parse(headers['x-app-usage']).call_count;
+                    message = `${authenticationError}, ${percentageOfCallsUsed}% of total calls used`;
+                } else {
+                    message = authenticationError;
+                }
             }
         } else {
             message = error;
@@ -47,3 +50,5 @@ export const fetchData = async () => {
         setTimeout(fetchData, ERROR_RETRY_FREQUENCY);
     };
 };
+
+export default fetchData;

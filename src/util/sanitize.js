@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sanitize = void 0;
 var config_1 = require("config");
 var sanitize = function (info) {
     var infoString = JSON.stringify(info);
@@ -10,4 +9,4 @@ var sanitize = function (info) {
     }
     return info;
 };
-exports.sanitize = sanitize;
+exports.default = sanitize;

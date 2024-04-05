@@ -4,13 +4,13 @@
         "skipLibCheck": true,
         "allowImportingTsExtensions": true,
         "noEmit": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
         "esModuleInterop": true,
         "moduleResolution": "NodeNext",
         "module": "NodeNext"
     },
-    "strict": true,
     "types": ["node"],
-    "noImplicitAny": true,
-    "strictNullCheks": true,
-    "include": ["logger/index.ts", "util/sanitize.ts", "app.ts", "index.ts"]
+    "include": ["*.test.ts", "*.d.ts"]
 }

@@ -2,7 +2,7 @@ import * as winston from 'winston';
 import { consoleFormat } from 'winston-console-format';
 const { combine, errors, timestamp, ms, splat, json, colorize, padLevels, prettyPrint } = winston.format;
 
-export const logger = winston.createLogger({
+const logger = winston.createLogger({
     level: 'debug',
     format: combine(
         errors({stack: true}),
@@ -36,3 +36,5 @@ if (process.env.NODE_ENV !== 'production') {
         )
     }));
 };
+
+export default logger;

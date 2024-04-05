@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchData = void 0;
 var config_1 = require("config");
 var axios_1 = require("axios");
 var index_js_1 = require("./logger/index.js");
@@ -60,15 +59,15 @@ var fetchData = function () { return __awaiter(void 0, void 0, void 0, function 
                 return [4 /*yield*/, axios_1.default.get(url)];
             case 1:
                 response = _a.sent();
-                index_js_1.logger.info('received data from FB API', { data: response.data });
+                index_js_1.default.info('received data from FB API', { data: response.data });
                 percentageOfCallsUsed = JSON.parse(response.headers['x-app-usage']).call_count;
                 if (percentageOfCallsUsed > HIGH_PERCENTAGE_WARNING) {
-                    setTimeout(exports.fetchData, HIGH_PERCENTAGE_FREQUENCY);
-                    index_js_1.logger.warn("".concat(percentageOfCallsUsed, "% of calls used! Calls reduced to every: 100 seconds"));
+                    setTimeout(fetchData, HIGH_PERCENTAGE_FREQUENCY);
+                    index_js_1.default.warn("".concat(percentageOfCallsUsed, "% of calls used! Calls reduced to every: 100 seconds"));
                 }
                 else {
-                    setTimeout(exports.fetchData, INITIAL_FREQUENCY);
-                    index_js_1.logger.info("calls every 2 seconds, ".concat(percentageOfCallsUsed, "% of total calls used"));
+                    setTimeout(fetchData, INITIAL_FREQUENCY);
+                    index_js_1.default.info("calls every 2 seconds, ".concat(percentageOfCallsUsed, "% of total calls used"));
                 }
                 return [3 /*break*/, 3];
             case 2:
@@ -88,8 +87,8 @@ var fetchData = function () { return __awaiter(void 0, void 0, void 0, function 
                 else {
                     message = error_1;
                 }
-                index_js_1.logger.error((0, sanitize_js_1.sanitize)(message));
-                setTimeout(exports.fetchData, ERROR_RETRY_FREQUENCY);
+                index_js_1.default.error((0, sanitize_js_1.default)(message));
+                setTimeout(fetchData, ERROR_RETRY_FREQUENCY);
                 return [3 /*break*/, 3];
             case 3:
                 ;
@@ -97,4 +96,4 @@ var fetchData = function () { return __awaiter(void 0, void 0, void 0, function 
         }
     });
 }); };
-exports.fetchData = fetchData;
+exports.default = fetchData;

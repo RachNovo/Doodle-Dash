@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logger = void 0;
 var winston = require("winston");
 var winston_console_format_1 = require("winston-console-format");
 var _a = winston.format, combine = _a.combine, errors = _a.errors, timestamp = _a.timestamp, ms = _a.ms, splat = _a.splat, json = _a.json, colorize = _a.colorize, padLevels = _a.padLevels, prettyPrint = _a.prettyPrint;
-exports.logger = winston.createLogger({
+var logger = winston.createLogger({
     level: 'debug',
     format: combine(errors({ stack: true }), timestamp(), ms(), splat(), json(), prettyPrint()),
     transports: [
@@ -12,7 +11,7 @@ exports.logger = winston.createLogger({
     ]
 });
 if (process.env.NODE_ENV !== 'production') {
-    exports.logger.add(new winston.transports.Console({
+    logger.add(new winston.transports.Console({
         format: combine(colorize({ all: true }), padLevels(), (0, winston_console_format_1.consoleFormat)({
             showMeta: true,
             metaStrip: ["timestamp"],
@@ -27,3 +26,4 @@ if (process.env.NODE_ENV !== 'production') {
     }));
 }
 ;
+exports.default = logger;

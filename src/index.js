@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var app_js_1 = require("./app.js");
+var app_ts_1 = require("./app.ts");
 var config_1 = require("config");
 var verifyConfigValues = function () {
     console.log('Checking for ACCESS_TOKEN and ACCOUNT_ID...');
@@ -16,4 +16,4 @@ var verifyConfigValues = function () {
     }
 };
 if (verifyConfigValues())
-    (0, app_js_1.fetchData)();
+    (0, app_ts_1.default)();
