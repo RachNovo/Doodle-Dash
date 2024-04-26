@@ -10,10 +10,10 @@ const params = new URLSearchParams({
 });
 const url = `https://graph.facebook.com/v19.0/me?${params.toString()}`;
 
-const HIGH_PERCENTAGE_WARNING = 80;
+const HIGH_PERCENTAGE_WARNING = 99;
 const INITIAL_FREQUENCY = 2000;
 const HIGH_PERCENTAGE_FREQUENCY = 100000;
-const ERROR_RETRY_FREQUENCY = 5000;
+let errorRetryFrequency = INITIAL_FREQUENCY;
 
 export const fetchData = async () => {
     let response;
@@ -28,6 +28,7 @@ export const fetchData = async () => {
             setTimeout(fetchData, INITIAL_FREQUENCY);
             logger.info(`calls every 2 seconds, ${percentageOfCallsUsed}% of total calls used`);
         }
+        errorRetryFrequency = INITIAL_FREQUENCY;
     } catch (error) {
         let message;
         const headers = error.response.headers;
@@ -36,6 +37,9 @@ export const fetchData = async () => {
             if (headers['x-app-usage']) {
                 const percentageOfCallsUsed = JSON.parse(headers['x-app-usage']).call_count;
                 message = `${authenticationError}, ${percentageOfCallsUsed}% of total calls used`;
+                if (percentageOfCallsUsed > 100) {
+                    errorRetryFrequency = errorRetryFrequency * 2;
+                }
             } else {
                 message = authenticationError;
             }
@@ -44,6 +48,7 @@ export const fetchData = async () => {
         }
 
         logger.error(sanitize(message));
-        setTimeout(fetchData, ERROR_RETRY_FREQUENCY);
+        console.log('retrying in ', errorRetryFrequency/1000, ' seconds');
+        setTimeout(fetchData, errorRetryFrequency);
     };
 };
